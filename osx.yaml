@@ -1,0 +1,48 @@
+---
+- hosts: all
+  tasks:
+  - name: Install Homebrew
+    shell: 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+    args:
+      creates: /usr/local/bin/brew
+  - name: Update Homebrew
+    homebrew: update_homebrew=yes
+  - name: Install necessary tools using homebrew
+    homebrew: name={{ item }} state=present
+    with_items:
+      - caskroom/cask/brew-cask
+      - duti
+  - name: Install Homebrew packages without config
+    homebrew: name={{ item }} state=present
+    with_items:
+      - wget
+      - tig
+      - unrar
+      - weechat
+      - zsh
+      - zsh-completions
+  - name: Install Homebrew Cask packages without config
+    homebrew_cask: name={{ item }} state=present
+    with_items:
+      - android-file-transfer
+      - bettertouchtool
+      - caffeine
+      - dropbox
+      - firefox
+      - flux
+      - google-chrome
+      - google-drive
+      - iterm2
+      - itsycal
+      - karabiner
+      - keepassx
+      - macfusion
+      - osxfuse
+      - rightzoom
+      - silicon-labs-vcp-driver
+      - slack
+      - sshfs
+      - sublime-text3
+      - the-unarchiver
+      - vlc
+      - xtrafinder

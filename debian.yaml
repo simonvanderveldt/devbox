@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+  - name: Add repositories
+    apt_repository: repo="{{ item }}" state=present
+    with_items:
+      - deb http://ftp.nl.debian.org/debian jessie non-free
+      - deb http://linux.dropbox.com/debian jessie main
+  - name: Add apt keys
+    apt_key: keyserver=pgp.mit.edu id=5044912E state=present
+  - name: Install packages without config
+    apt: name="{{ item }}" state=present
+    with_items:
+      - wget
+      - tig
+      - unrar
+      - weechat
+      - zsh
