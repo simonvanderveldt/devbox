@@ -18,10 +18,10 @@
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
-      - wget
       - tig
       - unrar
       - weechat
+      - wget
       - zsh
       - zsh-completions
   - name: Install Homebrew Cask packages without config
@@ -35,6 +35,7 @@
       - flux
       - google-chrome
       - google-drive
+      - hub
       - iterm2
       - itsycal
       - karabiner
