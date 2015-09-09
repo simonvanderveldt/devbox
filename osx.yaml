@@ -1,12 +1,15 @@
 ---
 - hosts: all
-  tasks:
+  pre_tasks:
   - name: Install Homebrew
     shell: 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
     args:
       creates: /usr/local/bin/brew
   - name: Update Homebrew
     homebrew: update_homebrew=yes
+
+- hosts: all
+  tasks:
   - name: Install necessary tools using homebrew
     homebrew: name={{ item }} state=present
     with_items:
