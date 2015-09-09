@@ -1,0 +1,2 @@
+jdauphant.sublimetext
+igor_mukhin.sublimetext3_packagecontrol

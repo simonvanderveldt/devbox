@@ -1,18 +1,76 @@
 ---
 - hosts: all
+  pre_tasks:
+  - name: Install external Ansible modules
+    command: ansible-galaxy install -i -r requirements.txt
+
+- hosts: all
   tasks:
+  - name: Create ~/bin directory
+    file: path=~/bin state=directory
   - name: Add repositories
     apt_repository: repo="{{ item }}" state=present
     with_items:
       - deb http://ftp.nl.debian.org/debian jessie non-free
+      - deb http://mozilla.debian.net/ jessie-backports iceweasel-release
       - deb http://linux.dropbox.com/debian jessie main
-  - name: Add apt keys
+      - deb http://dl.google.com/linux/chrome/deb/ stable main
+    sudo: true
+  - name: Add Dropbox apt repo key
     apt_key: keyserver=pgp.mit.edu id=5044912E state=present
+    sudo: true
+  - name: Add apt repo keys
+    apt_key: url="{{ item }}" state=present
+    with_items:
+      - http://mozilla.debian.net/archive.asc
+      - https://dl.google.com/linux/linux_signing_key.pub
+    sudo: true
+  - name: Update apt cache
+    apt: update_cache=yes
+    sudo: true
   - name: Install packages without config
     apt: name="{{ item }}" state=present
     with_items:
       - wget
+      - stow
       - tig
       - unrar
       - weechat
       - zsh
+      - zip
+      - unzip
+      - dropbox
+      - terminator
+      - gtk-redshift
+      - android-tools-adb
+      - google-chrome-stable
+      - libcanberra-gtk-module
+      - zsh
+    sudo: true
+  - name: Install Firefox
+    apt: name=iceweasel default_release=jessie-backports state=present
+    sudo: true
+  - name: Install Github's hub
+    unarchive: src="https://github.com/github/hub/releases/download/v2.2.1/hub-linux-amd64-2.2.1.tar.gz" dest=~/bin/ copy=no
+    notify: Symlink hub
+  - name: Install oh-my-zsh
+    git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
+  - name: Make ZSH the default shell
+    user: name={{ ansible_ssh_user }} shell=/usr/bin/zsh
+    sudo: true
+
+  handlers:
+  - name: Symlink hub
+    debug: msg=" blabla "
+
+  vars:
+    packagecontrol_packages:
+      - "Base16 Color Schemes"
+      - "Compare Side-By-Side"
+
+  roles:
+    - { role: igor_mukhin.sublimetext3_packagecontrol, tags: sublimetext3 }
+    - role: jdauphant.sublimetext
+
+# TODO automate start of redshift-gtk -l 52.388058:4.639163
+# TODO create module for package install + stow if dir with package name exists
