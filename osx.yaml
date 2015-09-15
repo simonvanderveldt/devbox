@@ -18,8 +18,10 @@
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
+      - hub
       - tig
       - unrar
+      - wakeonlan
       - weechat
       - wget
       - zsh
