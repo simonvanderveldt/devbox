@@ -31,20 +31,20 @@
   - name: Install packages without config
     apt: name="{{ item }}" state=present
     with_items:
-      - wget
+      - android-tools-adb
+      - dropbox
+      - google-chrome-stable
+      - gtk-redshift
+      - libcanberra-gtk-module
       - stow
+      - terminator
       - tig
       - unrar
-      - weechat
-      - zsh
-      - zip
       - unzip
-      - dropbox
-      - terminator
-      - gtk-redshift
-      - android-tools-adb
-      - google-chrome-stable
-      - libcanberra-gtk-module
+      - weechat
+      - wget
+      - zip
+      - zsh
       - zsh
     sudo: true
   - name: Install Firefox
