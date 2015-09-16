@@ -36,6 +36,7 @@
       - google-chrome-stable
       - gtk-redshift
       - libcanberra-gtk-module
+      - rtorrent
       - stow
       - terminator
       - tig
