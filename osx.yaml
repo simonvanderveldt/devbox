@@ -15,6 +15,7 @@
     with_items:
       - caskroom/cask/brew-cask
       - duti
+      - git
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
