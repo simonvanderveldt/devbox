@@ -15,9 +15,13 @@
       - deb http://mozilla.debian.net/ jessie-backports iceweasel-release
       - deb http://linux.dropbox.com/debian jessie main
       - deb http://dl.google.com/linux/chrome/deb/ stable main
+      - deb https://apt.dockerproject.org/repo debian-jessie main
     sudo: true
-  - name: Add Dropbox apt repo key
-    apt_key: keyserver=pgp.mit.edu id=5044912E state=present
+  - name: Add keyserver repo keys
+    apt_key: keyserver="{{ item.keyserver }}" id="{{ item.keyid }}" state=present
+    with_items:
+      - { keyserver: 'pgp.mit.edu', keyid: '5044912E' }
+      - { keyserver: 'p80.pool.sks-keyservers.net', keyid: '58118E89F3A912897C070ADBF76221572C52609D' }
     sudo: true
   - name: Add apt repo keys
     apt_key: url="{{ item }}" state=present
@@ -32,6 +36,7 @@
     apt: name="{{ item }}" state=present
     with_items:
       - android-tools-adb
+      - docker-engine
       - dropbox
       - google-chrome-stable
       - gtk-redshift
