@@ -78,7 +78,7 @@
 
   roles:
     - { role: igor_mukhin.sublimetext3_packagecontrol, tags: sublimetext3 }
-    - role: jdauphant.sublimetext
+    - { role: jdauphant.sublimetext, sudo: true }
 
 # TODO automate start of redshift-gtk -l 52.388058:4.639163
 # TODO create module for package install + stow if dir with package name exists
