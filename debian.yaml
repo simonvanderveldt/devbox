@@ -59,7 +59,7 @@
     apt: name=iceweasel default_release=jessie-backports state=present
     sudo: true
   - name: Install Github's hub
-    unarchive: src="https://github.com/github/hub/releases/download/v2.2.1/hub-linux-amd64-2.2.1.tar.gz" dest=~/bin/ copy=no
+    unarchive: src="https://github.com/github/hub/releases/download/v2.2.1/hub-linux-amd64-2.2.1.tar.gz" dest=~/.local/bin/ copy=no
     notify: Symlink hub
   - name: Install oh-my-zsh
     git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
