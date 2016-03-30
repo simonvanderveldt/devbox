@@ -7,19 +7,16 @@
       creates: /usr/local/bin/brew
   - name: Update Homebrew
     homebrew: update_homebrew=yes
+  - name: Add Caskroom versions tap
+    homebrew_tap: tap=caskroom/versions state=present
 
 - hosts: all
   tasks:
-  - name: Install necessary tools using homebrew
-    homebrew: name={{ item }} state=present
-    with_items:
-      - caskroom/cask/brew-cask
-      - duti
-      - git
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
-      - hub
+      - duti
+      - git
       - tig
       - unrar
       - wakeonlan
@@ -27,11 +24,14 @@
       - wget
       - zsh
       - zsh-completions
+      - stow
+      - docker-machine
+      - docker
+      - groovysdk
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} state=present
     with_items:
       - android-file-transfer
-      - bettertouchtool
       - caffeine
       - dropbox
       - firefox
@@ -39,20 +39,26 @@
       - google-chrome
       - google-drive
       - hub
-      - iterm2
+      - iterm2-beta
       - itsycal
-      - karabiner
       - keepassx
-      - macfusion
-      - osxfuse
       - rightzoom
       - silicon-labs-vcp-driver
       - slack
-      - sshfs
-      - sublime-text3
+      - atom
       - the-unarchiver
       - vlc
       - xtrafinder
+      - spectacle
+      - intellij-idea-ce
+      - virtualbox
+      - python3
+      - java
+  - name: Install Python packages
+    become: yes
+    pip: name={{ item }} state=present
+    with_items:
+      - todotxt-machine
   - name: Create curl-ca-bundle directory
     file: path=/etc/ssl/certs/ state=directory owner=root group=wheel
     sudo: true
