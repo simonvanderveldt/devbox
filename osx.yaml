@@ -12,12 +12,14 @@
 
 - hosts: all
   tasks:
+  - name: Install git without completions
+    homebrew: name=git state=present install_options=--without-completions,--with-brewed-openssl,--with-brewed-curl
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
       - duti
-      - git
       - tig
+      - hub
       - unrar
       - wakeonlan
       - weechat
@@ -38,7 +40,6 @@
       - flux
       - google-chrome
       - google-drive
-      - hub
       - iterm2-beta
       - itsycal
       - keepassx
