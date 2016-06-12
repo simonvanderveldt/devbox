@@ -66,7 +66,7 @@
       - todotxt-machine
   - name: Create curl-ca-bundle directory
     file: path=/etc/ssl/certs/ state=directory owner=root group=wheel
-    sudo: true
+    become: true
   - name: Install curl-ca-bundle
     get_url: url=https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt dest=/etc/ssl/certs/ca-certificates.crt mode=0644
-    sudo: true
+    become: true
