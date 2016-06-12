@@ -34,6 +34,7 @@
     homebrew_cask: name={{ item }} state=present
     with_items:
       - android-file-transfer
+      - arduino
       - caffeine
       - dropbox
       - firefox
@@ -52,10 +53,12 @@
       - vlc
       - xtrafinder
       - spectacle
+      - steam
       - intellij-idea-ce
       - virtualbox
       - python3
       - java
+      - tunnelblick
   - name: Install Python packages
     become: yes
     pip: name={{ item }} state=present
