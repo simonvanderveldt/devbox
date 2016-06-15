@@ -30,6 +30,7 @@
       - docker-machine
       - docker
       - groovysdk
+      - python3
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} state=present
     with_items:
@@ -56,13 +57,13 @@
       - steam
       - intellij-idea-ce
       - virtualbox
-      - python3
       - java
       - tunnelblick
   - name: Install Python packages
     become: yes
-    pip: name={{ item }} state=present
+    pip: executable=pip3 name={{ item }} state=present
     with_items:
+      - pylint
       - todotxt-machine
   - name: Create curl-ca-bundle directory
     file: path=/etc/ssl/certs/ state=directory owner=root group=wheel
