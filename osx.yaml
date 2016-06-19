@@ -17,26 +17,27 @@
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
+      - docker
+      - docker-machine
       - duti
       - fasd
-      - tig
+      - groovysdk
       - hub
+      - python3
+      - stow
+      - tig
       - unrar
       - wakeonlan
       - weechat
       - wget
       - zsh
       - zsh-completions
-      - stow
-      - docker-machine
-      - docker
-      - groovysdk
-      - python3
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} state=present
     with_items:
       - android-file-transfer
       - arduino
+      - atom
       - caffeine
       - dropbox
       - firefox
@@ -44,22 +45,21 @@
       - gimp
       - google-chrome
       - google-drive
+      - intellij-idea-ce
       - iterm2-beta
       - itsycal
+      - java
       - keepassx
       - rightzoom
       - silicon-labs-vcp-driver
       - slack
-      - atom
-      - the-unarchiver
-      - vlc
-      - xtrafinder
       - spectacle
       - steam
-      - intellij-idea-ce
-      - virtualbox
-      - java
+      - the-unarchiver
       - tunnelblick
+      - virtualbox
+      - vlc
+      - xtrafinder
   - name: Install Python packages
     become: yes
     pip: executable=pip3 name={{ item }} state=present
