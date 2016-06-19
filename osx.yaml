@@ -18,6 +18,7 @@
     homebrew: name={{ item }} state=present
     with_items:
       - duti
+      - fasd
       - tig
       - hub
       - unrar
