@@ -24,6 +24,7 @@
       - fasd
       - groovysdk
       - hub
+      - jq
       - python3
       - stow
       - tig
@@ -33,6 +34,10 @@
       - wget
       - zsh
       - zsh-completions
+  - name: Install Homebrew packages that need to be linked explicitly
+    homebrew: name={{ item }} state=present
+    with_items:
+      - gettext
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} state=present
     with_items:
