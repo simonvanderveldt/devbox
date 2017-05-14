@@ -19,7 +19,6 @@
   - name: Install Homebrew packages without config
     homebrew: name={{ item }} state=present
     with_items:
-      - android-platform-tools
       - dinghy
       - docker
       - duti
@@ -47,6 +46,7 @@
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} install_options='force' state=present
     with_items:
+      - android-platform-tools
       - android-file-transfer
       - arduino
       - atom
