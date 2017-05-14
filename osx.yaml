@@ -5,21 +5,21 @@
     shell: 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
     args:
       creates: /usr/local/bin/brew
-  - name: Update homebrew
-    homebrew: update_homebrew=yes
   - name: Add caskroom versions tap
     homebrew_tap: tap=caskroom/versions state=present
   - name: Add caskroom drivers tap
     homebrew_tap: tap=caskroom/drivers state=present
   - name: Add dinghy tap
     homebrew_tap: tap=codekitchen/dinghy state=present
+  - name: Update homebrew
+    homebrew: update_homebrew=yes
 
 - hosts: all
   tasks:
   - name: Install git without completions
     homebrew: name=git state=present install_options=--without-completions,--with-brewed-openssl,--with-brewed-curl
   - name: Install Homebrew packages without config
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - dinghy
       - docker
