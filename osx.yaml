@@ -1,14 +1,16 @@
 ---
 - hosts: all
   pre_tasks:
-  - name: Install Homebrew
+  - name: Install homebrew
     shell: 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
     args:
       creates: /usr/local/bin/brew
-  - name: Update Homebrew
+  - name: Update homebrew
     homebrew: update_homebrew=yes
-  - name: Add Caskroom versions tap
+  - name: Add caskroom versions tap
     homebrew_tap: tap=caskroom/versions state=present
+  - name: Add caskroom drivers tap
+    homebrew_tap: tap=caskroom/drivers state=present
   - name: Add dinghy tap
     homebrew_tap: tap=codekitchen/dinghy state=present
 
@@ -46,8 +48,8 @@
   - name: Install Homebrew Cask packages without config
     homebrew_cask: name={{ item }} install_options='force' state=present
     with_items:
-      - android-platform-tools
       - android-file-transfer
+      - android-platform-tools
       - arduino
       - atom
       - caffeine
