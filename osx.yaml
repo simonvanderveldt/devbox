@@ -70,7 +70,6 @@
       - vagrant
       - virtualbox
       - vlc
-      - xtrafinder
   - name: Update file type association
     become: true
     command: "duti ./duti"
