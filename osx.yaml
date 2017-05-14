@@ -9,6 +9,8 @@
     homebrew: update_homebrew=yes
   - name: Add Caskroom versions tap
     homebrew_tap: tap=caskroom/versions state=present
+  - name: Add dinghy tap
+    homebrew_tap: tap=codekitchen/dinghy state=present
 
 - hosts: all
   tasks:
@@ -18,8 +20,8 @@
     homebrew: name={{ item }} state=present
     with_items:
       - android-platform-tools
+      - dinghy
       - docker
-      - docker-machine
       - duti
       - fasd
       - groovysdk
