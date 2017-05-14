@@ -71,6 +71,9 @@
       - virtualbox
       - vlc
       - xtrafinder
+  - name: Update file type association
+    become: true
+    command: "duti ./duti"
   - name: Install Python packages
     become: yes
     pip: executable=pip3 name={{ item }} state=present

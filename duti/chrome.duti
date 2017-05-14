@@ -1,0 +1,5 @@
+com.google.chrome       public.html         all
+com.google.chrome       public.xhtml        all
+com.google.chrome       http
+com.google.chrome       https
+com.google.chrome       mailto
