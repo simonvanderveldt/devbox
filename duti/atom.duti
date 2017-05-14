@@ -1,0 +1,6 @@
+com.github.atom   public.plain-text               all
+com.github.atom   net.daringfireball.markdown     all
+com.github.atom   public.html                     editor
+com.github.atom   com.netscape.javascript-source  all
+com.github.atom   .patch                          all
+com.github.atom   public.shell-script             editor
