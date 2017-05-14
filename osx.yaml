@@ -45,7 +45,7 @@
     with_items:
       - gettext
   - name: Install Homebrew Cask packages without config
-    homebrew_cask: name={{ item }} state=present
+    homebrew_cask: name={{ item }} install_options='force' state=present
     with_items:
       - android-file-transfer
       - arduino
