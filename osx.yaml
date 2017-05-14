@@ -24,12 +24,16 @@
       - docker
       - duti
       - fasd
+      - git
       - groovysdk
       - hub
       - jq
+      - ncdu
+      - pwgen
       - python3
       - stow
       - tig
+      - tree
       - unrar
       - wakeonlan
       - weechat
